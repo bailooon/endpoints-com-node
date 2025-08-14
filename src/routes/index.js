@@ -77,6 +77,13 @@ router.put('/:id', (req, res, next) => {
 
         const userFind = users.findIndex(u => u.id == id)
 
+        if(userFind === -1){
+            return res.status(404).json({
+                success:false,
+                message: "usuário não encontrado"
+            })
+        }
+
 })
 
 module.exports = router;
