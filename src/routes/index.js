@@ -64,7 +64,7 @@ router.post("/", (req, res, next) => {
 });
 
 //put
-router.put('/:id', (req, res, next) => {
+router.put("/:id", (req, res, next) => {
     const id = parseInt(req.params.id);
     const {nome, idade} = req.body
 
@@ -75,7 +75,8 @@ router.put('/:id', (req, res, next) => {
             })
         }
 
-        const userFind = users.findIndex(u => u.id == id)
+        const 
+        userFind = users.findIndex((u) => u.id == id)
 
         if(userFind === -1){
             return res.status(404).json({
@@ -84,6 +85,16 @@ router.put('/:id', (req, res, next) => {
             })
         }
 
+        users[userFind] = {
+            id,
+            nome,
+            idade
+        }
+
+        res.status(200).json({
+            success:true,
+            message: "Usuário atualizado com sucesso!"
+        });
 })
 
 module.exports = router;
