@@ -97,4 +97,39 @@ router.put("/:id", (req, res, next) => {
         });
 })
 
+//delete
+router.delete("/:id", (req, res, next) => {
+  try{
+    const id = parseInt(req.params.id)
+    const userIndex = users.findIndex(u => u.id === id)
+    console.log(`index encontrado: ${userIndex}`)
+    if(userIndex === -1){
+      return res.status(404).json(
+        {
+          success: false, 
+          message: "Identificador não encontrado"
+        }
+      )
+    }
+    //remover da lista
+    const deleteUser = users[userIndex] 
+    users.splice(userIndex, 1) // removendo 
+
+    res.status(200).json({
+        success: true,
+        message: 'Removido com sucesso'
+    })
+    
+  }catch(error){
+    console.info(erro)
+    res.status(500).json(
+      {
+        success:false, 
+        message: "Erro interno ao deletar o usuário"
+      }
+    )
+  }
+
+});
+
 module.exports = router;
