@@ -1,7 +1,10 @@
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+
+mongoose.connect("mongodb://seu_usuario:sua_senha@localhost:27017/?authSource=admin");
 
 //Habilitar o CORS
 app.use(function (req, res, next){
