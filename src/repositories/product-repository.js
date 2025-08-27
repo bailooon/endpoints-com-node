@@ -1,41 +1,40 @@
-const Product = require('../models/product') //Importando o model do produto
+const Product = require('../models/product') //importando a model do produto
 
 class ProductRepository{
-
-    //Buscar Todos
+    //Buscar todos
     async findAll(){
-        //buscar todos os produtos ativos
-        //(active true) é um filtro
+         //buscar todos os produtos ativos
+         //{active: true} : é um filtro
         return await Product.find({active: true});
     }
 
-    //Buscar por Id
+    //Buscar por id
     async findById(id){
-        return await Product.findById(id);
+        return await Product.findById(id)
     }
 
-    //Criar
+    //Criar 
     async create(productData){
         //Criando uma instância para persistir os dados no mongo
         const product = new Product(productData)
-        return await product.save
+        return await product.save();
     }
 
     //atualizar
     async update(id, productData){
-        return await Product.findIdAndUpdate(
-            id,
+        return await Product.findByIdAndUpdate(
+            id, 
             productData
         )
     }
 
-    //Delete
+    //delete 
     async delete(id){
-        return await Product.findByIdAndUpdate(
-            id,
+        return await Product.findByIdAndUpdate
+        (
+            id, 
             {active: false}
         )
-        
     }
 }
 

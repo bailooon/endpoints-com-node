@@ -9,6 +9,8 @@ console.log(`Api configurada na porta ${port}`)
 
 function onListening(){
     const addr = server.address();
-    const bind = typeof addr == 'string' ? 'pipe' + addr : 'port' + addr.port;
-    console.log(bind);
+    const bind = typeof addr == 'string' ? 'pipe' 
+    + addr : 'port: '
+    + addr.port; 
+    console.log(bind)
 }
