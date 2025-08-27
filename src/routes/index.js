@@ -1,6 +1,7 @@
 const express = require("express");
 const product = require("../models/product");
 const router = new express.Router();
+const productRouter = require('./product-route')
 
 router.get("/", (req, res) => {
   res.json({
@@ -18,6 +19,8 @@ router.get('/health', (req, res) => {
     timestamp: new Date().toISOString()
   })
 })
+
+router.use('/products', productRouter)
 
 // let users = [
 //   { id: 1, nome: "Matheus", idade: 20 },
