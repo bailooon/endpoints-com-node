@@ -63,7 +63,7 @@ class ProductController{
         try{
             const productData = req.body;
             const newProduct = await productRepository.create(productData);
-            req.status(201).json({
+            res.status(201).json({
                 success:true,
                 data:newProduct,
                 message:"Produto criado com sucesso"
@@ -71,7 +71,8 @@ class ProductController{
         } catch(error){
             res.status(500).json({
                 success:false,
-                message:"Erro ao criar o produto"
+                message:"Erro ao criar o produto",
+                error: error.message
             })
 
         }
